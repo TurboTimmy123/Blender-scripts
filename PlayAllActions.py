@@ -1,5 +1,6 @@
 # Iterates through all actions in 1 sequence
-# Useful when searching through 100's of animations from an externally imported animation
+# Useful when searching through 100's of animations from an externally imported source
+# NOTE: after finished, either restart blender, or clear the handler to stop switching actions
 
 import bpy
 
@@ -11,16 +12,14 @@ def stop_at_last_frame(scene):
         for a in bpy.data.actions:
             list.append(a.name)
         index = list.index(bpy.context.active_object.animation_data.action.name)
-        print('Setting to', list[index+1])
+        print('\nSetting to', list[index+1])
         bpy.context.active_object.animation_data.action = bpy.data.actions.get(list[index+1])
         action_list = [action.frame_range for action in bpy.data.actions]
-        
         print('Action length', action_list[index+1][-1])
-        
         bpy.context.scene.frame_end = action_list[index+1][-1]
         bpy.context.scene.frame_current = 0
 
 print('Clearing handler')
-bpy.app.handlers.frame_change_post.clear()
+bpy.app.handlers.frame_change_post.clear() # Run this once after finished, or restart Blender
 bpy.app.handlers.frame_change_post.append(stop_at_last_frame)
 print('Registered handler')
