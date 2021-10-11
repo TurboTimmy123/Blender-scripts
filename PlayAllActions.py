@@ -1,4 +1,4 @@
-# Iterates through all actions in 1 sequence
+# Iterates through all actions in a seamless sequence
 # Useful when searching through 100's of animations from an externally imported source
 # NOTE: after finished, either restart blender, or clear the handler to stop switching actions
 
