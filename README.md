@@ -1,2 +1,2 @@
-# Blender scripts
- A collection of various Blender scripts to automate tedious tasks
+# Blender scripts and stuff
+ Collection of random Python scripts
